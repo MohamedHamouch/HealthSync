@@ -20,7 +20,6 @@ return new class extends Migration {
       $table->string('email')->unique();
       $table->string('password');
       $table->string('profile_picture')->nullable();
-      $table->string('city')->nullable();
       $table->boolean('is_active')->default(true);
       $table->boolean('is_suspended')->default(false);
       $table->timestamps();
