@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\Role;
 
 return new class extends Migration {
   /**
@@ -15,12 +16,11 @@ return new class extends Migration {
       $table->string('first_name');
       $table->string('last_name');
       $table->string('username')->unique();
-      $table->enum('role', ['Admin', 'Doctor', 'Client']);
+      $table->enum('role', ['superAdmin', 'admin', 'doctor', 'client']);
       $table->string('email')->unique();
       $table->string('password');
-      $table->string('phone')->unique();
       $table->string('profile_picture')->nullable();
-      $table->string('date_of_birth')->nullable();
+      $table->string('city')->nullable();
       $table->boolean('is_active')->default(true);
       $table->boolean('is_suspended')->default(false);
       $table->timestamps();
