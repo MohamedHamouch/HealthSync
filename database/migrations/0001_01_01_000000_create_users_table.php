@@ -14,10 +14,15 @@ return new class extends Migration {
       $table->id();
       $table->string('first_name');
       $table->string('last_name');
+      $table->string('username')->unique();
+      $table->enum('role', ['Admin', 'Doctor', 'Client']);
       $table->string('email')->unique();
+      $table->string('password');
+      $table->string('phone')->unique();
+      $table->string('profile_picture')->nullable();
+      $table->string('date_of_birth')->nullable();
       $table->boolean('is_active')->default(true);
       $table->boolean('is_suspended')->default(false);
-      $table->enum('role', ['Admin', 'Doctor', 'Client']);
       $table->timestamps();
     });
 
