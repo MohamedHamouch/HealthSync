@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\HealthRecordFileType;
 
 return new class extends Migration {
     /**
@@ -18,17 +19,7 @@ return new class extends Migration {
             $table->string('mime_type'); // File type
             $table->string('size'); // File size in bytes
             $table->string('description')->nullable(); 
-            $table->enum('type', [
-                'lab_result',
-                'prescription',
-                'x_ray',
-                'mri',
-                'ct_scan',
-                'ultrasound',
-                'doctor_note',
-                'insurance',
-                'other'
-            ])->default('other');
+            $table->enum('type', array_column(HealthRecordFileType::cases(), 'value'))->default(HealthRecordFileType::OTHER->value);
             $table->timestamps();
         });
     }

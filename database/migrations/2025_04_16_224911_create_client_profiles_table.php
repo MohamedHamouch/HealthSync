@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\Gender;
 
 return new class extends Migration
 {
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->string('phone')->unique();
             $table->string('city')->nullable();
-            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->enum('gender', array_column(Gender::cases(), 'value'))->nullable();
             $table->float('height')->nullable();
             $table->float('weight')->nullable();
             $table->text('allergies')->nullable();

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Enums\Role;
+use App\Enums\UserRole;
 
 return new class extends Migration {
   /**
@@ -16,7 +16,7 @@ return new class extends Migration {
       $table->string('first_name');
       $table->string('last_name');
       $table->string('username')->unique();
-      $table->enum('role', ['admin', 'doctor', 'client']);
+      $table->enum('role', array_column(UserRole::cases(), 'value'));
       $table->string('email')->unique();
       $table->string('password');
       $table->string('profile_picture')->nullable();
