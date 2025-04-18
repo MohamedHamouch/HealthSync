@@ -19,4 +19,28 @@ class HealthRecord extends Model
     protected $casts = [
         'record_date' => 'date',
     ];
+
+    /**
+     * Get the user that owns the health record.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the measurements for the health record.
+     */
+    public function measurements()
+    {
+        return $this->hasMany(Measurement::class);
+    }
+
+    /**
+     * Get the files for the health record.
+     */
+    public function files()
+    {
+        return $this->hasMany(HealthRecordFile::class);
+    }
 }

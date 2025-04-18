@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\HealthRecordFileType;
 
 class HealthRecordFile extends Model
 {
@@ -18,4 +19,16 @@ class HealthRecordFile extends Model
         'description',
         'type'
     ];
+
+    protected $casts = [
+        'type' => HealthRecordFileType::class,
+    ];
+
+    /**
+     * Get the health record that owns the file.
+     */
+    public function healthRecord()
+    {
+        return $this->belongsTo(HealthRecord::class);
+    }
 }
