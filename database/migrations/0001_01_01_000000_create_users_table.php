@@ -22,6 +22,7 @@ return new class extends Migration {
       $table->string('profile_picture')->nullable();
       $table->boolean('is_active')->default(true);
       $table->boolean('is_suspended')->default(false);
+      $table->rememberToken();
       $table->timestamps();
     });
 
