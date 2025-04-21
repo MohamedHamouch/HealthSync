@@ -60,7 +60,7 @@ class AuthController extends Controller
             'is_suspended' => false,
         ]);
         $user->save();
-        
+
         // Create role-specific profile
         if ($request->role === UserRole::CLIENT->value) {
             $profile = new ClientProfile([
@@ -83,12 +83,8 @@ class AuthController extends Controller
         // Flash success message
         session()->flash('success', 'Registration successful! Welcome to HealthSync.');
 
-        // Redirect based on role
-        if ($request->role === UserRole::CLIENT->value) {
-            return redirect()->route('client.dashboard');
-        } else {
-            return redirect()->route('doctor.dashboard');
-        }
+        return redirect()->route('dashboard');
+
     }
 
     /**
@@ -113,15 +109,11 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             $user = User::find(Auth::id());
-            
-            // Redirect based on user role
-            if ($user->role === UserRole::ADMIN) {
-                return redirect()->route('admin.dashboard');
-            } elseif ($user->role === UserRole::DOCTOR) {
-                return redirect()->route('doctor.dashboard');
-            } else {
-                return redirect()->route('client.dashboard');
-            }
+
+            return redirect()->route('dashboard')->with([
+                'success' => 'Login successful! Welcome back, ' . $user->first_name . '!',
+            ]);
+
         }
 
         return back()->withErrors([
