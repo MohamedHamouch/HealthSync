@@ -34,7 +34,8 @@ class UserService
      */
     public static function resolveUserInstance($user)
     {
-        if (!$user) return null;
+        if (!$user)
+            return null;
 
         return match ($user->role) {
             UserRole::ADMIN => $user instanceof Admin ? $user : new Admin($user->getAttributes()),
@@ -43,21 +44,4 @@ class UserService
             default => $user,
         };
     }
-
-    /**
-     * Create a new user with the specified role
-     */
-    public static function createUser(array $data, UserRole $role)
-    {
-        $userData = array_merge($data, ['role' => $role]);
-        
-        $user = match ($role) {
-            UserRole::ADMIN => Admin::create($userData),
-            UserRole::DOCTOR => Doctor::create($userData),
-            UserRole::CLIENT => Client::create($userData),
-            default => User::create($userData),
-        };
-
-        return $user;
-    }
-} 
+}

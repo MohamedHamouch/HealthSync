@@ -36,10 +36,10 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|in:client,doctor',
             // Client specific fields
-            'phone' => 'required_if:role,client|string|max:255',
+            'phone' => 'required_if:role,client|nullable|string|max:255',
             // Doctor specific fields
-            'specialization' => 'required_if:role,doctor|string|max:255',
-            'consultation_fee' => 'required_if:role,doctor|numeric|min:0',
+            'specialization' => 'required_if:role,doctor|nullable|string|max:255',
+            'consultation_fee' => 'required_if:role,doctor|nullable|numeric|min:0',
         ]);
 
         if ($validator->fails()) {
@@ -60,17 +60,15 @@ class AuthController extends Controller
             'is_suspended' => false,
         ]);
         $user->save();
-
+        
         // Create role-specific profile
         if ($request->role === UserRole::CLIENT->value) {
-            $client = Client::resolveClassByRole($user);
             $profile = new ClientProfile([
                 'user_id' => $user->id,
                 'phone' => $request->phone,
             ]);
             $profile->save();
         } elseif ($request->role === UserRole::DOCTOR->value) {
-            $doctor = Doctor::resolveClassByRole($user);
             $profile = new DoctorProfile([
                 'user_id' => $user->id,
                 'specialization' => $request->specialization,
@@ -81,6 +79,9 @@ class AuthController extends Controller
 
         // Login the user after registration
         Auth::login($user);
+
+        // Flash success message
+        session()->flash('success', 'Registration successful! Welcome to HealthSync.');
 
         // Redirect based on role
         if ($request->role === UserRole::CLIENT->value) {
@@ -140,4 +141,4 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
-} 
+}
