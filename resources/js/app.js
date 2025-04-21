@@ -1,6 +1,7 @@
 import './bootstrap';
+// Mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu functionality
+    // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     
@@ -18,17 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Add smooth scrolling to all links
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
             
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
+                e.preventDefault();
                 window.scrollTo({
                     top: targetElement.offsetTop - 80, // Offset for the sticky header
                     behavior: 'smooth'
@@ -36,4 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Update footer year dynamically
+    const footerYearElement = document.querySelector('.footer-year');
+    if (footerYearElement) {
+        footerYearElement.textContent = new Date().getFullYear();
+    }
 });

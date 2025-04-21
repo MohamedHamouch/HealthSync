@@ -1,5 +1,4 @@
-<!-- Navigation - Enhanced mobile responsiveness -->
-<nav class="bg-primary-600 text-white shadow-md sticky top-0 z-50">
+<nav class="bg-teal-600 text-white shadow-md sticky top-0 z-50">
     <div class="container mx-auto px-4 py-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2">
@@ -11,14 +10,14 @@
             
             <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6">
-                <a href="{{ route('home') }}" class="hover:text-primary-200 transition duration-300 font-medium">Home</a>
-                <a href="{{ url('/#features') }}" class="hover:text-primary-200 transition duration-300 font-medium">Features</a>
-                <a href="{{ url('/#roles') }}" class="hover:text-primary-200 transition duration-300 font-medium">User Roles</a>
-                <a href="{{ url('/#testimonials') }}" class="hover:text-primary-200 transition duration-300 font-medium">Testimonials</a>
+                <a href="{{ route('home') }}" class="hover:text-teal-200 transition duration-300 font-medium">Home</a>
+                <a href="#features" class="hover:text-teal-200 transition duration-300 font-medium">Features</a>
+                <a href="#roles" class="hover:text-teal-200 transition duration-300 font-medium">User Roles</a>
+                <a href="#testimonials" class="hover:text-teal-200 transition duration-300 font-medium">Testimonials</a>
             </div>
             
             <div class="hidden md:block">
-                <a href="{{ route('login') }}" class="px-4 py-2 rounded bg-white text-primary-600 font-medium hover:bg-primary-50 transition duration-300 shadow-sm hover:shadow">Sign In</a>
+                <a href="{{ route('login') }}" class="px-4 py-2 rounded bg-white text-teal-600 font-medium hover:bg-teal-50 transition duration-300 shadow-sm hover:shadow">Sign In</a>
             </div>
             
             <!-- Mobile menu button -->
@@ -33,12 +32,12 @@
         
         <!-- Mobile menu, hidden by default -->
         <div id="mobile-menu" class="md:hidden hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 mt-3 bg-primary-700 rounded-lg">
-                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-primary-600">Home</a>
-                <a href="{{ url('/#features') }}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-primary-600">Features</a>
-                <a href="{{ url('/#roles') }}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-primary-600">User Roles</a>
-                <a href="{{ url('/#testimonials') }}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-primary-600">Testimonials</a>
-                <a href="{{ route('login') }}" class="block px-3 py-2 mt-3 rounded-md text-white font-medium bg-primary-800 hover:bg-primary-900">Sign In</a>
+            <div class="px-2 pt-2 pb-3 space-y-1 mt-3 bg-teal-700 rounded-lg">
+                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-teal-600">Home</a>
+                <a href="#features" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-teal-600">Features</a>
+                <a href="#roles" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-teal-600">User Roles</a>
+                <a href="#testimonials" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-teal-600">Testimonials</a>
+                <a href="{{ route('login') }}" class="block px-3 py-2 mt-3 rounded-md text-white font-medium bg-teal-800 hover:bg-teal-900">Sign In</a>
             </div>
         </div>
     </div>

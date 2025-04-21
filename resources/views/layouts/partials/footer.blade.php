@@ -1,4 +1,3 @@
-<!-- Footer - Improved responsiveness -->
 <footer class="bg-gray-800 text-white py-12">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -16,19 +15,19 @@
                 <h3 class="font-bold text-lg mb-4">Quick Links</h3>
                 <ul class="space-y-2">
                     <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                    <li><a href="{{ url('/#features') }}" class="text-gray-400 hover:text-white transition duration-300">Features</a></li>
-                    <li><a href="{{ url('/#roles') }}" class="text-gray-400 hover:text-white transition duration-300">User Roles</a></li>
-                    <li><a href="{{ url('/#testimonials') }}" class="text-gray-400 hover:text-white transition duration-300">Testimonials</a></li>
+                    <li><a href="#features" class="text-gray-400 hover:text-white transition duration-300">Features</a></li>
+                    <li><a href="#roles" class="text-gray-400 hover:text-white transition duration-300">User Roles</a></li>
+                    <li><a href="#testimonials" class="text-gray-400 hover:text-white transition duration-300">Testimonials</a></li>
                 </ul>
             </div>
             
             <div>
                 <h3 class="font-bold text-lg mb-4">Legal</h3>
                 <ul class="space-y-2">
-                    <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
-                    <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
-                    <li><a href="{{ route('cookies') }}" class="text-gray-400 hover:text-white transition duration-300">Cookie Policy</a></li>
-                    <li><a href="{{ route('hipaa') }}" class="text-gray-400 hover:text-white transition duration-300">HIPAA Compliance</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Cookie Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">HIPAA Compliance</a></li>
                 </ul>
             </div>
             
