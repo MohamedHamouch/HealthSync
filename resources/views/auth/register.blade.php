@@ -133,7 +133,7 @@
                 </div>
                 
                 <!-- Terms Agreement -->
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <div class="flex items-center">
                         <input class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded @error('terms') border-red-500 @enderror" id="terms" name="terms" type="checkbox" required {{ old('terms') ? 'checked' : '' }}>
                         <label class="ml-2 block text-sm text-gray-700" for="terms">
@@ -143,7 +143,7 @@
                     @error('terms')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
                 
                 <!-- Submit Button and Sign In Link in same row -->
                 <div class="flex items-center justify-between">
@@ -202,6 +202,10 @@
             document.getElementById('phone').setAttribute('required', '');
             document.getElementById('specialization').removeAttribute('required');
             document.getElementById('consultation_fee').removeAttribute('required');
+            
+            // Add empty values to doctor fields so they're included in form submission
+            document.getElementById('specialization').value = '';
+            document.getElementById('consultation_fee').value = '';
         });
         
         doctorTab.addEventListener('click', function() {
@@ -222,6 +226,9 @@
             document.getElementById('specialization').setAttribute('required', '');
             document.getElementById('consultation_fee').setAttribute('required', '');
             document.getElementById('phone').removeAttribute('required');
+            
+            // Add empty value to client fields so they're included in form submission
+            document.getElementById('phone').value = '';
         });
     });
 </script>
