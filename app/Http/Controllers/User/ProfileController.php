@@ -29,7 +29,6 @@ class ProfileController extends Controller
             'id' => $user->id,
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
-            'full_name' => $user->full_name,
             'email' => $user->email,
             'username' => $user->username,
             'role' => $user->role->value,
