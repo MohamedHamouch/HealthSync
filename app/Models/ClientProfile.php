@@ -18,7 +18,8 @@ class ClientProfile extends Model
         'height',
         'weight',
         'allergies',
-        'chronic_conditions'
+        'chronic_conditions',
+        'blood_type'
     ];
 
     protected $casts = [
