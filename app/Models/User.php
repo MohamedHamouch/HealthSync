@@ -25,7 +25,7 @@ class User extends Authenticatable
         'role',
         'email',
         'password',
-        'profile_picture',
+        'avatar',
         'is_active',
         'is_suspended'
     ];
@@ -87,7 +87,8 @@ class User extends Authenticatable
      */
     public static function resolveClassByRole($user)
     {
-        if (!$user) return null;
+        if (!$user)
+            return null;
 
         return match ($user->role) {
             UserRole::ADMIN => new Admin($user->getAttributes()),
@@ -127,5 +128,12 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function getAvatarUrlAttribute()
+    {
+        return $this->avatar
+            ? asset('storage/' . $this->avatar)
+            : asset('images/defaults/avatar.png');
     }
 }
