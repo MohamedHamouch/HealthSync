@@ -12,7 +12,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $roleString = strtolower($user->role->value);
+        $roleString = $user->role->value;
 
         // Get role-specific data
         $dashboardData = $this->getDashboardDataForRole($user);
