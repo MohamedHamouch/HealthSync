@@ -48,27 +48,31 @@ class AuthController extends Controller
                 ->withInput();
         }
 
-        // Create base user
-        $user = new User([
+        // Prepare user data
+        $userData = [
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
             'username' => strtolower($request->first_name . '.' . $request->last_name),
             'is_active' => true,
             'is_suspended' => false,
-        ]);
-        $user->save();
+        ];
+
+        // Convert string role to UserRole enum
+        $role = $request->role === 'client' ? UserRole::CLIENT : UserRole::DOCTOR;
+        
+        // Create user with UserService
+        $user = \App\Services\UserService::createUser($userData, $role);
 
         // Create role-specific profile
-        if ($request->role === UserRole::CLIENT->value) {
+        if ($role === UserRole::CLIENT) {
             $profile = new ClientProfile([
                 'user_id' => $user->id,
                 'phone' => $request->phone,
             ]);
             $profile->save();
-        } elseif ($request->role === UserRole::DOCTOR->value) {
+        } elseif ($role === UserRole::DOCTOR) {
             $profile = new DoctorProfile([
                 'user_id' => $user->id,
                 'specialization' => $request->specialization,
@@ -84,7 +88,6 @@ class AuthController extends Controller
         session()->flash('success', 'Registration successful! Welcome to HealthSync.');
 
         return redirect()->route('dashboard');
-
     }
 
     /**
