@@ -6,6 +6,14 @@ use App\Enums\UserRole;
 
 class Doctor extends User
 {
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+    
     /**
      * The "booted" method of the model.
      *

@@ -7,6 +7,13 @@ use App\Enums\UserRole;
 class Client extends User
 {
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+    
+    /**
      * The "booted" method of the model.
      *
      * @return void
