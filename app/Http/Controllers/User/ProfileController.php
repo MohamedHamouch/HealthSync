@@ -11,6 +11,7 @@ use App\Models\DoctorProfile;
 use App\Enums\Gender;
 use App\Models\User;
 use App\Enums\UserRole;
+use App\Models\Appointment;
 
 class ProfileController extends Controller
 {
@@ -73,7 +74,10 @@ class ProfileController extends Controller
                 break;
 
             case 'admin':
-                // Admins don't have additional profile data
+                $userData['profile'] = [
+                    'total_users' => User::whereIn('role', [UserRole::CLIENT, UserRole::DOCTOR])->count(),
+                    'total_appointments' => Appointment::count(),
+                ];
                 break;
         }
 
@@ -86,36 +90,36 @@ class ProfileController extends Controller
     public function updateBasicInfo(Request $request)
     {
         $user = Auth::user();
-        
+
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'username' => 'required|string|max:255|unique:users,username,' . $user->id,
         ]);
-        
+
         $user->first_name = $validated['first_name'];
         $user->last_name = $validated['last_name'];
         $user->email = $validated['email'];
         $user->username = $validated['username'];
         $user->save();
-        
+
         return redirect()->route('profile')->with('success', 'Basic profile information updated successfully');
     }
-    
+
     /**
      * Update the user's contact information
      */
     public function updateContactInfo(Request $request)
     {
         $user = Auth::user();
-        
+
         // Validate data
         $validated = $request->validate([
             'phone' => 'required|string|max:20',
             'city' => 'nullable|string|max:100',
         ]);
-        
+
         // Get the profile based on user role
         switch ($user->role->value) {
             case 'client':
@@ -125,7 +129,7 @@ class ProfileController extends Controller
                     $profile = new ClientProfile(['user_id' => $user->id]);
                 }
                 break;
-                
+
             case 'doctor':
                 $profile = DoctorProfile::where('user_id', $user->id)->first();
                 if (!$profile) {
@@ -133,31 +137,31 @@ class ProfileController extends Controller
                     $profile = new DoctorProfile(['user_id' => $user->id]);
                 }
                 break;
-                
+
             default:
                 return redirect()->route('profile')->with('error', 'Profile not found');
         }
-        
+
         // Update the profile
         $profile->phone = $validated['phone'];
         $profile->city = $validated['city'];
         $profile->save();
-        
+
         return redirect()->route('profile')->with('success', 'Contact information updated successfully');
     }
-    
+
     /**
      * Update the client's health information
      */
     public function updateHealthInfo(Request $request)
     {
         $user = Auth::user();
-        
+
         // Only clients can update health information
         if ($user->role->value !== 'client') {
             return redirect()->route('profile')->with('error', 'Only clients can update health information');
         }
-        
+
         // Validate data
         $validated = $request->validate([
             'date_of_birth' => 'nullable|date',
@@ -168,13 +172,13 @@ class ProfileController extends Controller
             'allergies' => 'nullable|string',
             'chronic_conditions' => 'nullable|string',
         ]);
-        
+
         // Get or create client profile
         $profile = ClientProfile::where('user_id', $user->id)->first();
         if (!$profile) {
             $profile = new ClientProfile(['user_id' => $user->id]);
         }
-        
+
         // Update health information
         $profile->date_of_birth = $validated['date_of_birth'];
         if (!empty($validated['gender'])) {
@@ -186,32 +190,66 @@ class ProfileController extends Controller
         $profile->allergies = $validated['allergies'];
         $profile->chronic_conditions = $validated['chronic_conditions'];
         $profile->save();
-        
+
         return redirect()->route('profile')->with('success', 'Health information updated successfully');
     }
-    
+
     /**
      * Update the user's profile photo
      */
     public function updateProfilePhoto(Request $request)
     {
         $user = Auth::user();
-        
+
         // Validate the uploaded file
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg|max:5120', // 5MB max
         ]);
-        
+
         // Delete the old avatar if it exists
         if ($user->avatar) {
             Storage::disk('public')->delete($user->avatar);
         }
-        
+
         // Store the new avatar
         $path = $request->file('avatar')->store('avatars', 'public');
         $user->avatar = $path;
         $user->save();
-        
+
         return redirect()->route('profile')->with('success', 'Profile photo updated successfully');
+    }
+
+    /**
+     * Update the doctor's professional information
+     */
+    public function updateProfessionalInfo(Request $request)
+    {
+        $user = Auth::user();
+        
+        // Only doctors can update professional information
+        if ($user->role->value !== 'doctor') {
+            return redirect()->route('profile')->with('error', 'Only doctors can update professional information');
+        }
+        
+        // Validate data
+        $validated = $request->validate([
+            'specialization' => 'required|string|max:255',
+            'consultation_fee' => 'required|numeric|min:0',
+            'bio' => 'nullable|string',
+        ]);
+        
+        // Get or create doctor profile
+        $profile = DoctorProfile::where('user_id', $user->id)->first();
+        if (!$profile) {
+            $profile = new DoctorProfile(['user_id' => $user->id]);
+        }
+        
+        // Update professional information
+        $profile->specialization = $validated['specialization'];
+        $profile->consultation_fee = $validated['consultation_fee'];
+        $profile->bio = $validated['bio'];
+        $profile->save();
+        
+        return redirect()->route('profile')->with('success', 'Professional information updated successfully');
     }
 }
