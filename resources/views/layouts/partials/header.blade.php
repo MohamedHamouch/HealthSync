@@ -66,7 +66,7 @@
                                 <div class="h-2 bg-transparent"></div>
                                 <!-- The actual dropdown menu -->
                                 <div class="bg-white rounded-md shadow-lg py-1">
-                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-teal-50">My Profile</a>
+                                    <a href="{{ route('profile')}}" class="block px-4 py-2 text-gray-800 hover:bg-teal-50">My Profile</a>
                                     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-teal-50">Settings</a>
                                     <div class="border-t border-gray-100"></div>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-gray-800 hover:bg-teal-50">
