@@ -23,6 +23,7 @@ return new class extends Migration
             $table->float('weight')->nullable();
             $table->text('allergies')->nullable();
             $table->text('chronic_conditions')->nullable();
+            $table->string('blood_type')->nullable();
             $table->timestamps();
         });
     }

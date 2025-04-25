@@ -15,11 +15,11 @@ return new class extends Migration {
       $table->id();
       $table->string('first_name');
       $table->string('last_name');
-      $table->string('username')->unique();
+      $table->string('username'); //->unique();
       $table->enum('role', array_column(UserRole::cases(), 'value'));
       $table->string('email')->unique();
       $table->string('password');
-      $table->string('profile_picture')->nullable();
+      $table->string('avatar')->nullable();
       $table->boolean('is_active')->default(true);
       $table->boolean('is_suspended')->default(false);
       $table->rememberToken();
