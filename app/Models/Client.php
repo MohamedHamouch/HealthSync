@@ -46,6 +46,16 @@ class Client extends User
     }
 
     /**
+     * Get the doctors that have access to this client's data.
+     */
+    public function authorizedDoctors()
+    {
+        return $this->belongsToMany(Doctor::class, 'client_doctor', 'client_id', 'doctor_id')
+            ->withPivot(['access_granted_at', 'access_expires_at', 'is_active'])
+            ->withTimestamps();
+    }
+
+    /**
      * Get the appointments for the client.
      */
     public function appointments()
@@ -81,19 +91,6 @@ class Client extends User
             Appointment::class,
             'client_id',
             'appointment_id'
-        );
-    }
-
-    /**
-     * Get all measurements for the client through health records.
-     */
-    public function measurements()
-    {
-        return $this->hasManyThrough(
-            Measurement::class,
-            HealthRecord::class,
-            'user_id',
-            'health_record_id'
         );
     }
 

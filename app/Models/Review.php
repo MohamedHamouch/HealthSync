@@ -14,7 +14,7 @@ class Review extends Model
      *
      * @var string
      */
-    protected $table = 'appointment_reviews';
+    protected $table = 'reviews';
 
     protected $fillable = [
         'appointment_id',
