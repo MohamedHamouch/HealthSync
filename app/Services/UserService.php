@@ -37,28 +37,46 @@ class UserService
         if (!$user)
             return null;
 
-        return match ($user->role) {
-            UserRole::ADMIN => $user instanceof Admin ? $user : new Admin($user->getAttributes()),
-            UserRole::DOCTOR => $user instanceof Doctor ? $user : new Doctor($user->getAttributes()),
-            UserRole::CLIENT => $user instanceof Client ? $user : new Client($user->getAttributes()),
+        if ($user instanceof Admin || $user instanceof Doctor || $user instanceof Client) {
+            return $user;
+        }
+
+        $roleModel = match ($user->role) {
+            UserRole::ADMIN => new Admin(),
+            UserRole::DOCTOR => new Doctor(),
+            UserRole::CLIENT => new Client(),
             default => $user,
         };
+
+        if ($roleModel === $user) {
+            return $user;
+        }
+
+        // Manually copy attributes from the base User model to the role-specific model
+        foreach ($user->attributesToArray() as $key => $value) {
+            $roleModel->setAttribute($key, $value);
+        }
+
+        // Make sure the ID is set correctly
+        $roleModel->id = $user->id;
+
+        return $roleModel;
     }
 
-     /**
-      * Create a new user with the specified role
-      */
-      public static function createUser(array $data, UserRole $role)
-      {
-          $userData = array_merge($data, ['role' => $role]);
-          
-          $user = match ($role) {
-              UserRole::ADMIN => Admin::create($userData),
-              UserRole::DOCTOR => Doctor::create($userData),
-              UserRole::CLIENT => Client::create($userData),
-              default => User::create($userData),
-          };
-  
-          return $user;
-      }
+    /**
+     * Create a new user with the specified role
+     */
+    public static function createUser(array $data, UserRole $role)
+    {
+        $userData = array_merge($data, ['role' => $role]);
+
+        $user = match ($role) {
+            UserRole::ADMIN => Admin::create($userData),
+            UserRole::DOCTOR => Doctor::create($userData),
+            UserRole::CLIENT => Client::create($userData),
+            default => User::create($userData),
+        };
+
+        return $user;
+    }
 }
