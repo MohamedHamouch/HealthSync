@@ -13,7 +13,7 @@ class Appointment extends Model
     protected $fillable = [
         'doctor_id',
         'client_id',
-        'appointment_slot_id',
+        'appointment_date',
         'reason',
         'status',
         'notes'
@@ -21,6 +21,7 @@ class Appointment extends Model
 
     protected $casts = [
         'status' => AppointmentStatus::class,
+        'appointment_date' => 'datetime',
     ];
 
     /**
@@ -40,26 +41,10 @@ class Appointment extends Model
     }
 
     /**
-     * Get the appointment slot associated with the appointment.
-     */
-    public function slot()
-    {
-        return $this->belongsTo(AppointmentSlot::class, 'appointment_slot_id');
-    }
-
-    /**
      * Get the review associated with the appointment.
      */
     public function review()
     {
         return $this->hasOne(Review::class);
-    }
-
-    /**
-     * Get the notes associated with the appointment.
-     */
-    public function notes()
-    {
-        return $this->hasMany(Note::class);
     }
 } 

@@ -13,7 +13,7 @@ class Doctor extends User
      * @var string
      */
     protected $table = 'users';
-    
+
     /**
      * The "booted" method of the model.
      *
@@ -65,11 +65,11 @@ class Doctor extends User
     }
 
     /**
-     * Get the appointment slots for the doctor.
+     * Get the doctor's weekly schedules.
      */
-    public function appointmentSlots()
+    public function schedules()
     {
-        return $this->hasMany(AppointmentSlot::class, 'doctor_id');
+        return $this->hasMany(DoctorSchedule::class, 'doctor_id');
     }
 
     /**
@@ -102,4 +102,4 @@ class Doctor extends User
     {
         return $this->reviews()->avg('rating');
     }
-} 
+}

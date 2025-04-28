@@ -30,14 +30,6 @@ class DoctorProfile extends Model
     }
 
     /**
-     * Get the appointment slots for the doctor.
-     */
-    public function appointmentSlots()
-    {
-        return $this->hasMany(AppointmentSlot::class, 'doctor_id', 'user_id');
-    }
-
-    /**
      * Get the appointments for the doctor.
      */
     public function appointments()
