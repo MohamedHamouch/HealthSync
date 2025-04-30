@@ -48,6 +48,12 @@ class AuthController extends Controller
                 ->withInput();
         }
 
+        // Convert string role to UserRole enum
+        $role = $request->role === 'client' ? UserRole::CLIENT : UserRole::DOCTOR;
+        
+        // Set is_active based on role
+        $isActive = $role === UserRole::CLIENT ? true : false;
+
         // Prepare user data
         $userData = [
             'first_name' => $request->first_name,
@@ -55,12 +61,9 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'username' => strtolower($request->first_name . '.' . $request->last_name),
-            'is_active' => true,
+            'is_active' => $isActive,
             'is_suspended' => false,
         ];
-
-        // Convert string role to UserRole enum
-        $role = $request->role === 'client' ? UserRole::CLIENT : UserRole::DOCTOR;
         
         // Create user with UserService
         $user = \App\Services\UserService::createUser($userData, $role);
@@ -84,10 +87,14 @@ class AuthController extends Controller
         // Login the user after registration
         Auth::login($user);
 
-        // Flash success message
-        session()->flash('success', 'Registration successful! Welcome to HealthSync.');
-
-        return redirect()->route('dashboard');
+        // Set appropriate success message based on role
+        if ($role === UserRole::DOCTOR) {
+            session()->flash('info', 'Registration successful! Your doctor account is pending activation by an administrator. Please complete your profile while waiting for activation.');
+            return redirect()->route('activation.notice');
+        } else {
+            session()->flash('success', 'Registration successful! Welcome to HealthSync.');
+            return redirect()->route('dashboard');
+        }
     }
 
     /**
@@ -112,6 +119,11 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             $user = User::find(Auth::id());
+
+            // If the user is a doctor and not active, redirect to activation notice
+            if ($user->isDoctor() && !$user->is_active) {
+                return redirect()->route('activation.notice');
+            }
 
             return redirect()->route('dashboard')->with([
                 'success' => 'Login successful! Welcome back, ' . $user->first_name . '!',
