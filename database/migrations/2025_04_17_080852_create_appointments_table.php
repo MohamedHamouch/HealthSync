@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('doctor_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('client_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('appointment_slot_id')->constrained()->onDelete('cascade');
+            $table->dateTime('appointment_date')->nullable();
             $table->text('reason')->nullable();
             $table->enum('status', array_column(AppointmentStatus::cases(), 'value'))->default(AppointmentStatus::PENDING->value);
             $table->text('notes')->nullable();

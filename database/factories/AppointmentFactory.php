@@ -4,9 +4,9 @@ namespace Database\Factories;
 
 use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
-use App\Models\AppointmentSlot;
 use App\Models\Client;
 use App\Models\Doctor;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AppointmentFactory extends Factory
@@ -17,10 +17,13 @@ class AppointmentFactory extends Factory
     {
         $status = fake()->randomElement(AppointmentStatus::cases());
         
+        // Generate appointment date within next month
+        $appointmentDate = fake()->dateTimeBetween('now', '+30 days');
+        
         return [
             'doctor_id' => Doctor::inRandomOrder()->first()->id,
             'client_id' => Client::inRandomOrder()->first()->id,
-            'appointment_slot_id' => AppointmentSlot::where('is_available', true)->inRandomOrder()->first()?->id,
+            'appointment_date' => $appointmentDate,
             'reason' => fake()->sentence(10),
             'status' => $status,
             'notes' => $status === AppointmentStatus::COMPLETED ? fake()->paragraph() : null,

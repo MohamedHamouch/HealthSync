@@ -4,11 +4,11 @@ namespace Database\Seeders;
 
 use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
-use App\Models\AppointmentSlot;
 use App\Models\Client;
 use App\Models\Doctor;
 use App\Models\HealthRecord;
 use App\Models\Review;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -33,15 +33,6 @@ class DatabaseSeeder extends Seeder
         
         if (Client::count() < 10) {
             $this->call(ClientSampleSeeder::class);
-        }
-
-        // Generate appointment slots for each doctor
-        $doctors = Doctor::all();
-        foreach ($doctors as $doctor) {
-            // Create 20 appointment slots per doctor
-            AppointmentSlot::factory()
-                ->count(20)
-                ->create(['doctor_id' => $doctor->id]);
         }
 
         // Create client-doctor relationships
@@ -72,27 +63,25 @@ class DatabaseSeeder extends Seeder
             if ($doctors->count() > 0) {
                 for ($i = 0; $i < $appointmentCount; $i++) {
                     $doctor = $doctors->random();
-                    $slot = AppointmentSlot::where('doctor_id', $doctor->id)
-                        ->where('is_available', true)
-                        ->inRandomOrder()
-                        ->first();
                     
-                    if ($slot) {
-                        // Create appointment and mark slot as unavailable
-                        $appointment = Appointment::factory()->create([
-                            'doctor_id' => $doctor->id,
-                            'client_id' => $client->id,
-                            'appointment_slot_id' => $slot->id,
+                    // Generate a random appointment date within the next 30 days
+                    $appointmentDate = Carbon::now()->addDays(rand(1, 30));
+                    $hour = rand(8, 16); // Between 8 AM and 4 PM
+                    $minute = [0, 30][rand(0, 1)]; // Either 0 or 30 minutes
+                    $appointmentDate->setTime($hour, $minute, 0);
+                    
+                    // Create appointment 
+                    $appointment = Appointment::factory()->create([
+                        'doctor_id' => $doctor->id,
+                        'client_id' => $client->id,
+                        'appointment_date' => $appointmentDate,
+                    ]);
+                    
+                    // Add reviews to completed appointments
+                    if ($appointment->status === AppointmentStatus::COMPLETED) {
+                        Review::factory()->create([
+                            'appointment_id' => $appointment->id,
                         ]);
-                        
-                        $slot->update(['is_available' => false]);
-                        
-                        // Add reviews to completed appointments
-                        if ($appointment->status === AppointmentStatus::COMPLETED) {
-                            Review::factory()->create([
-                                'appointment_id' => $appointment->id,
-                            ]);
-                        }
                     }
                 }
             }
