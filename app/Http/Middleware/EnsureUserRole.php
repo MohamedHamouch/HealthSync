@@ -23,27 +23,18 @@ class EnsureUserRole
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-        
+
         $user = UserService::getCurrentUser();
-        
+
         // Get the string value of the user's role
         $userRoleValue = $user->role->value;
-        
+
         // Direct string comparison with the passed roles
         if (!in_array($userRoleValue, $roles)) {
-            // Determine appropriate redirect based on user's role
-            if ($user->isAdmin()) {
-                return redirect()->route('admin.dashboard')
-                    ->with('error', 'You do not have permission to access this area.');
-            } elseif ($user->isDoctor()) {
-                return redirect()->route('doctor.dashboard')
-                    ->with('error', 'You do not have permission to access this area.');
-            } else {
-                return redirect()->route('client.dashboard')
-                    ->with('error', 'You do not have permission to access this area.');
-            }
+            return redirect()->route('dashboard')
+                ->with('error', 'You do not have permission to access this area.');
         }
-        
+
         return $next($request);
     }
 }
