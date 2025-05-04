@@ -53,40 +53,6 @@ class AppointmentController extends Controller
     }
     
     /**
-     * Store a review for a completed appointment.
-     */
-    public function storeReview(Request $request, Appointment $appointment)
-    {
-        // Check if the client is authorized to review this appointment
-        if ($appointment->client_id !== Auth::id()) {
-            abort(403, 'Unauthorized action.');
-        }
-        
-        // Check if the appointment is completed
-        if ($appointment->status !== AppointmentStatus::COMPLETED) {
-            return redirect()->back()->with('error', 'You can only review completed appointments.');
-        }
-        
-        // Check if a review already exists
-        if ($appointment->review()->exists()) {
-            return redirect()->back()->with('error', 'You have already reviewed this appointment.');
-        }
-        
-        $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'nullable|string|max:500',
-        ]);
-        
-        Review::create([
-            'appointment_id' => $appointment->id,
-            'rating' => $request->rating,
-            'comment' => $request->comment,
-        ]);
-        
-        return redirect()->back()->with('success', 'Review submitted successfully.');
-    }
-    
-    /**
      * Cancel an appointment.
      */
     public function cancel(Appointment $appointment)
