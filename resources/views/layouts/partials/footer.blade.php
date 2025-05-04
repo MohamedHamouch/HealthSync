@@ -15,14 +15,23 @@
                 <h3 class="font-bold text-lg mb-4">Quick Links</h3>
                 <ul class="space-y-2">
                     <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                    <li><a href="#features" class="text-gray-400 hover:text-white transition duration-300">Features</a></li>
-                    <li><a href="#roles" class="text-gray-400 hover:text-white transition duration-300">User Roles</a></li>
-                    <li><a href="#testimonials" class="text-gray-400 hover:text-white transition duration-300">Testimonials</a></li>
+                    <li><a href="{{ route('home') }}#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                    <li><a href="{{ route('home') }}#doctors" class="text-gray-400 hover:text-white transition duration-300">Our Doctors</a></li>
+                    <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    @auth
+                        <li><a href="{{ route('dashboard') }}" class="text-gray-400 hover:text-white transition duration-300">Dashboard</a></li>
+                        @if(Auth::user()->isClient())
+                            <li><a href="{{ route('food.search') }}" class="text-gray-400 hover:text-white transition duration-300">Food Nutrition Search</a></li>
+                        @endif
+                    @else
+                        <li><a href="{{ route('login') }}" class="text-gray-400 hover:text-white transition duration-300">Login</a></li>
+                        <li><a href="{{ route('register') }}" class="text-gray-400 hover:text-white transition duration-300">Register</a></li>
+                    @endauth
                 </ul>
             </div>
             
             <div>
-                <h3 class="font-bold text-lg mb-4">Legal</h3>
+                <h3 class="font-bold text-lg mb-4">About</h3>
                 <ul class="space-y-2">
                     <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
