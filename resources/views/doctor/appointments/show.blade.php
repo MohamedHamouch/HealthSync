@@ -245,7 +245,13 @@
                                     <div>
                                         <div class="mb-4">
                                             <p class="text-sm text-gray-500 mb-1">Gender</p>
-                                            <p class="font-medium text-gray-800">{{ ucfirst($client->profile->gender->value) }}</p>
+                                            <p class="font-medium text-gray-800">
+                                                @if($client->profile->gender)
+                                                    {{ ucfirst($client->profile->gender->value) }}
+                                                @else
+                                                    N/A
+                                                @endif
+                                            </p>
                                         </div>
                                         <div class="mb-4">
                                             <p class="text-sm text-gray-500 mb-1">Age</p>
@@ -380,9 +386,20 @@
                                         <ul class="list-disc pl-5 text-gray-800">
                                             @foreach($latestHealthRecord->files as $file)
                                                 <li>
-                                                    <a href="{{ Storage::url($file->file_path) }}" target="_blank" class="text-primary-600 hover:text-primary-800">
-                                                        {{ $file->original_filename }}
-                                                    </a>
+                                                    @if($file->path && $file->filename)
+                                                        <a href="{{ Storage::url($file->path) }}" target="_blank" class="text-primary-600 hover:text-primary-800">
+                                                            {{ $file->filename }}
+                                                        </a>
+                                                    @elseif($file->filename)
+                                                        <span class="text-gray-500">{{ $file->filename }}</span>
+                                                        <span class="text-xs text-red-500">(File path missing)</span>
+                                                    @elseif($file->path)
+                                                        <a href="{{ Storage::url($file->path) }}" target="_blank" class="text-primary-600 hover:text-primary-800">
+                                                            Unnamed file
+                                                        </a>
+                                                    @else
+                                                        <span class="text-gray-500">File information unavailable</span>
+                                                    @endif
                                                 </li>
                                             @endforeach
                                         </ul>

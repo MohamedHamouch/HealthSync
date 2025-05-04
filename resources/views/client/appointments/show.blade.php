@@ -145,7 +145,7 @@
                                     <label for="rating" class="block text-sm font-medium text-gray-700 mb-1">Rating</label>
                                     <div class="flex items-center">
                                         <div class="flex space-x-1">
-                                            @for($i = 1; $i <= 5; $i++)
+                                            @for($i = 5; $i >= 1; $i--)
                                                 <input type="radio" id="rating{{ $i }}" name="rating" value="{{ $i }}" class="hidden peer" required>
                                                 <label for="rating{{ $i }}" class="cursor-pointer text-gray-300 peer-checked:text-yellow-400">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
