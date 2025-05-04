@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/update/contact', [ProfileController::class, 'updateContactInfo'])->name('profile.update.contact');
     Route::put('/profile/update/health', [ProfileController::class, 'updateHealthInfo'])->name('profile.update.health');
     Route::put('/profile/update/photo', [ProfileController::class, 'updateProfilePhoto'])->name('profile.update.photo');
-    Route::put('/profile/update/professional', [ProfileController::class, 'updateProfessionalInfo'])->middleware('role:admin')->name('profile.update.professional');
+    Route::put('/profile/update/professional', [ProfileController::class, 'updateProfessionalInfo'])->middleware('role:admin')->name('doctor.profile.update.professional');
     
     // Health Records routes
     Route::middleware('role:client')->group(function () {
