@@ -1,4 +1,46 @@
 import './bootstrap';
+
+// Import SweetAlert2
+import Swal from 'sweetalert2';
+
+// Make SweetAlert available globally
+window.Swal = Swal;
+
+// Import sweet-alerts implementation
+import './sweet-alerts';
+
+// Sweet Alert helper functions
+window.showAlert = function(message, type = 'success') {
+    Swal.fire({
+        title: type.charAt(0).toUpperCase() + type.slice(1),
+        text: message,
+        icon: type,
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+    });
+};
+
+window.showConfirm = function(message, callback) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: message,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed && typeof callback === 'function') {
+            callback();
+        }
+    });
+    return false; // Always return false to prevent default form submission
+};
+
 // Mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu toggle
