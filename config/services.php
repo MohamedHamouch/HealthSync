@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'fooddata' => [
+        'key' => env('FOODDATA_API_KEY', 'DEMO_KEY'),
+    ],
+
 ];
