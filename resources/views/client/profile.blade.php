@@ -8,10 +8,25 @@
         <!-- Profile Header -->
         <div class="mb-8 flex flex-col md:flex-row justify-between items-start">
             <div>
+                <div class="flex items-center mb-1">
+                    <a href="{{ route('dashboard') }}" class="mr-2 text-primary-600 hover:text-primary-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </a>
                 <h1 class="text-3xl font-bold text-gray-800">Your Profile</h1>
+                </div>
                 <p class="text-gray-600">Manage your personal and health information</p>
             </div>
-            <p class="text-sm text-gray-500 mt-2" id="last-updated">Last updated: {{ $profileData['created_at']->format('Y-m-d H:i:s') }}</p>
+            <div class="mt-4 md:mt-0 flex space-x-4">
+                <a href="{{ route('health-records.index') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Health Records
+                </a>
+                <p class="text-sm text-gray-500 self-center" id="last-updated">Last updated: {{ $profileData['created_at']->format('Y-m-d H:i:s') }}</p>
+            </div>
         </div>
         
         <div class="grid md:grid-cols-3 gap-8" id="profile-container">
@@ -149,11 +164,18 @@
                     <div class="p-6">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-lg font-semibold text-gray-800">Health Details</h3>
-                            <button class="text-primary-600 hover:text-primary-800 transition" id="edit-health-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                </svg>
-                            </button>
+                            <div class="flex space-x-2">
+                                <a href="{{ route('health-records.index') }}" class="text-green-600 hover:text-green-800 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </a>
+                                <button class="text-primary-600 hover:text-primary-800 transition" id="edit-health-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                         
                         <div class="space-y-3 mb-6" id="health-details">
@@ -234,6 +256,16 @@
                                     </p>
                                 </div>
                             </div>
+                        </div>
+                        
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Health Records</p>
+                            <a href="{{ route('health-records.index') }}" class="inline-flex items-center mt-2 text-sm font-medium text-green-600 hover:text-green-800">
+                                <span>Manage your health records</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
