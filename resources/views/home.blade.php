@@ -24,19 +24,18 @@
                 </div>
                 <div class="lg:w-1/2 grid grid-cols-2 gap-4">
                     <div class="transform hover:scale-105 transition duration-300 hover:rotate-1">
-                        <img src="https://placehold.co/600x400/teal/white?text=Doctor+Consultation"
-                            alt="Doctor Consultation" class="rounded-lg shadow-xl">
+                        <img src="{{ asset('images/Doctor.jpg') }}" alt="Doctor Consultation" class="rounded-lg shadow-xl">
                     </div>
                     <div class="transform hover:scale-105 transition duration-300 hover:-rotate-1 mt-8">
-                        <img src="https://placehold.co/600x400/cyan/white?text=Health+Monitoring" alt="Health Monitoring"
+                        <img src="{{ asset('images/Healthmonitor.avif')}}" alt="Health Monitoring"
                             class="rounded-lg shadow-xl">
                     </div>
                     <div class="transform hover:scale-105 transition duration-300 hover:-rotate-1">
-                        <img src="https://placehold.co/600x400/blue/white?text=Medical+Records" alt="Medical Records"
+                        <img src="{{ asset('images/Medicalrecord.png') }}" alt="Medical Records"
                             class="rounded-lg shadow-xl">
                     </div>
                     <div class="transform hover:scale-105 transition duration-300 hover:rotate-1 mt-8">
-                        <img src="https://placehold.co/600x400/teal/white?text=Appointment+Booking"
+                        <img src="{{ asset('images/Appointment.jpg') }}"
                             alt="Appointment Booking" class="rounded-lg shadow-xl">
                     </div>
                 </div>
@@ -72,8 +71,8 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-gray-800">Appointment Scheduling</h3>
-                    <p class="text-gray-600">Book, reschedule, or cancel appointments with healthcare providers in
-                        real-time.</p>
+                    <p class="text-gray-600">Book appointments with preferred doctors, choose available time slots, and
+                        manage your healthcare visits all in one place.</p>
                 </div>
 
                 <!-- Feature 2 -->
@@ -86,9 +85,9 @@
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Medical Records</h3>
-                    <p class="text-gray-600">Securely store and access your complete medical history, test results, and
-                        prescriptions.</p>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Health Records Management</h3>
+                    <p class="text-gray-600">Securely store and manage your health records, including vital measurements and
+                        file attachments, for a complete medical history.</p>
                 </div>
 
                 <!-- Feature 3 -->
@@ -101,9 +100,9 @@
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Doctor Profiles</h3>
-                    <p class="text-gray-600">Browse detailed profiles of healthcare providers including specialties,
-                        experience, and patient reviews.</p>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Doctor Reviews</h3>
+                    <p class="text-gray-600">Rate and review your healthcare providers, helping others make informed
+                        decisions when choosing doctors.</p>
                 </div>
 
                 <!-- Feature 4 -->
@@ -113,12 +112,12 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary-600" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Secure Messaging</h3>
-                    <p class="text-gray-600">Communicate directly with your healthcare team through our encrypted messaging
-                        system.</p>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Nutritional Information</h3>
+                    <p class="text-gray-600">Search for food items and access detailed nutritional information from the USDA
+                        database to support your health goals.</p>
                 </div>
             </div>
         </div>
@@ -132,16 +131,16 @@
                 healthcare ecosystem, providing specialized tools for each user role.</p>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Role 1: Patients -->
+                <!-- Role 1: Clients -->
                 <div
                     class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:shadow-2xl">
                     <div class="h-52 bg-primary-600 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://placehold.co/400x300/teal/white?text=Patients" alt="Patients"
+                        <img src="{{ asset('images/patient.jpg') }}" alt="Clients"
                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary-800 to-transparent opacity-50"></div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-4 text-primary-600">For Patients</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-primary-600">For Clients</h3>
                         <ul class="space-y-3 text-gray-700">
                             <li class="flex items-start">
                                 <svg class="h-5 w-5 text-primary-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
@@ -157,7 +156,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>View and manage medical records</span>
+                                <span>Create and manage health records</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-5 w-5 text-primary-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
@@ -165,7 +164,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Receive medication reminders</span>
+                                <span>Track appointment history</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-5 w-5 text-primary-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
@@ -173,7 +172,15 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Communicate with healthcare providers</span>
+                                <span>Submit reviews for doctors</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-primary-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Access nutritional information</span>
                             </li>
                         </ul>
                     </div>
@@ -183,7 +190,7 @@
                 <div
                     class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:shadow-2xl">
                     <div class="h-52 bg-secondary-500 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://placehold.co/400x300/cyan/white?text=Doctors" alt="Doctors"
+                        <img src="{{ asset('images/doctor.jpg') }}" alt="Doctors"
                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-cyan-800 to-transparent opacity-50"></div>
                     </div>
@@ -196,7 +203,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Manage daily appointment schedule</span>
+                                <span>Set weekly schedule availability</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-5 w-5 text-secondary-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
@@ -204,7 +211,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Access patient medical histories</span>
+                                <span>View and manage appointments</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-5 w-5 text-secondary-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
@@ -212,7 +219,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Issue prescriptions digitally</span>
+                                <span>Access patient health records</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-5 w-5 text-secondary-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
@@ -220,17 +227,25 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Share diagnostic results securely</span>
+                                <span>View client reviews</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-secondary-500 mr-2 mt-0.5 flex-shrink-0" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Update professional profile</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Role 3: Healthcare Administrators -->
+                <!-- Role 3: Administrators -->
                 <div
                     class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:shadow-2xl">
                     <div class="h-52 bg-blue-600 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://placehold.co/400x300/blue/white?text=Administrators" alt="Administrators"
+                        <img src="{{ asset('images/admin.jpg') }}" alt="Administrators"
                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-blue-800 to-transparent opacity-50"></div>
                     </div>
@@ -243,7 +258,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Oversee all appointments and schedules</span>
+                                <span>Manage all system users</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
@@ -251,7 +266,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Manage staff and doctor availability</span>
+                                <span>Activate new doctor accounts</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
@@ -259,7 +274,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Generate reports and analytics</span>
+                                <span>Suspend and unsuspend user accounts</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
@@ -267,7 +282,15 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span>Monitor system performance</span>
+                                <span>View detailed user information</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Update doctor professional info</span>
                             </li>
                         </ul>
                     </div>
@@ -285,7 +308,7 @@
 
             <div class="flex flex-col lg:flex-row items-center justify-between">
                 <div class="lg:w-2/5 mb-10 lg:mb-0 lg:pr-10">
-                    <img src="https://placehold.co/800x600/teal/white?text=HealthSync+Workflow" alt="HealthSync Workflow"
+                    <img src="{{ asset('images/how-it-works.cms') }}" alt="HealthSync Workflow"
                         class="rounded-xl shadow-xl hover:shadow-2xl transition duration-300">
                 </div>
 
@@ -301,8 +324,8 @@
                             </div>
                             <div class="ml-6">
                                 <h3 class="text-xl font-bold text-gray-900 mb-2">Create Your Account</h3>
-                                <p class="text-gray-600 text-lg">Sign up and complete your profile with relevant health
-                                    information and preferences.</p>
+                                <p class="text-gray-600 text-lg">Register as a client or doctor and complete your profile
+                                    with relevant information about yourself.</p>
                             </div>
                         </div>
 
@@ -315,9 +338,9 @@
                                 </div>
                             </div>
                             <div class="ml-6">
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Find Healthcare Providers</h3>
-                                <p class="text-gray-600 text-lg">Browse through our network of qualified doctors and
-                                    specialists based on your needs.</p>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Explore Available Doctors</h3>
+                                <p class="text-gray-600 text-lg">Browse through our network of qualified doctors, view their
+                                    specializations, and read reviews from other clients.</p>
                             </div>
                         </div>
 
@@ -331,8 +354,8 @@
                             </div>
                             <div class="ml-6">
                                 <h3 class="text-xl font-bold text-gray-900 mb-2">Book Appointments</h3>
-                                <p class="text-gray-600 text-lg">Schedule consultations at your convenience with real-time
-                                    availability information.</p>
+                                <p class="text-gray-600 text-lg">Select a doctor, choose from their available time slots,
+                                    and confirm your appointment with just a few clicks.</p>
                             </div>
                         </div>
 
@@ -345,9 +368,9 @@
                                 </div>
                             </div>
                             <div class="ml-6">
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Receive Care & Follow-up</h3>
-                                <p class="text-gray-600 text-lg">Get treatment, access your records, and maintain ongoing
-                                    communication with your healthcare team.</p>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Manage Your Health</h3>
+                                <p class="text-gray-600 text-lg">Create health records, track your appointments, leave
+                                    reviews for doctors, and access nutritional information to maintain your wellbeing.</p>
                             </div>
                         </div>
                     </div>
@@ -369,16 +392,15 @@
                             <span class="text-lg">★★★★★</span>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"HealthSync has completely transformed how I manage my healthcare.
-                        The appointment booking feature is so convenient, and having all my medical records in one place is
-                        invaluable."</p>
+                    <p class="text-gray-600 mb-6 italic">"HealthSync has made managing my medical appointments so much
+                        easier. The health records feature is especially useful for tracking my vital signs over time."</p>
                     <div class="flex items-center mt-auto">
                         <div
                             class="w-12 h-12 bg-primary-200 rounded-full flex items-center justify-center text-primary-700 font-bold mr-3 shadow-md">
-                            J</div>
+                            M</div>
                         <div>
-                            <h4 class="font-bold text-gray-800">Jessica Miller</h4>
-                            <p class="text-sm text-gray-500">Patient</p>
+                            <h4 class="font-bold text-gray-800">Maria Rodriguez</h4>
+                            <p class="text-sm text-gray-500">Client</p>
                         </div>
                     </div>
                 </div>
@@ -390,15 +412,15 @@
                             <span class="text-lg">★★★★★</span>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"As a doctor, HealthSync helps me keep track of my appointments and
-                        patient records efficiently. The interface is intuitive and saves me hours each week in
-                        administrative work."</p>
+                    <p class="text-gray-600 mb-6 italic">"As a doctor, I appreciate how HealthSync streamlines my schedule
+                        management. Setting my weekly availability once and letting the system handle bookings saves me
+                        hours every week."</p>
                     <div class="flex items-center mt-auto">
                         <div
                             class="w-12 h-12 bg-primary-200 rounded-full flex items-center justify-center text-primary-700 font-bold mr-3 shadow-md">
-                            R</div>
+                            D</div>
                         <div>
-                            <h4 class="font-bold text-gray-800">Dr. Robert Chen</h4>
+                            <h4 class="font-bold text-gray-800">Dr. David Kim</h4>
                             <p class="text-sm text-gray-500">Cardiologist</p>
                         </div>
                     </div>
@@ -411,16 +433,16 @@
                             <span class="text-lg">★★★★★</span>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"Our healthcare facility has seen a 40% reduction in scheduling
-                        errors since implementing HealthSync. The administrative dashboard provides valuable insights for
-                        our operations."</p>
+                    <p class="text-gray-600 mb-6 italic">"The user management system in HealthSync is excellent. Being able
+                        to easily activate doctor accounts and monitor all users from a single dashboard makes
+                        administration efficient."</p>
                     <div class="flex items-center mt-auto">
                         <div
                             class="w-12 h-12 bg-primary-200 rounded-full flex items-center justify-center text-primary-700 font-bold mr-3 shadow-md">
-                            S</div>
+                            J</div>
                         <div>
-                            <h4 class="font-bold text-gray-800">Sarah Johnson</h4>
-                            <p class="text-sm text-gray-500">Hospital Administrator</p>
+                            <h4 class="font-bold text-gray-800">James Wilson</h4>
+                            <p class="text-sm text-gray-500">System Administrator</p>
                         </div>
                     </div>
                 </div>
@@ -432,8 +454,8 @@
     <section class="py-20 md:py-28 hero-gradient text-white relative overflow-hidden">
         <div class="container mx-auto px-4 text-center relative z-10">
             <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Healthcare Experience?</h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">Join thousands of users who trust HealthSync for their
-                healthcare management needs.</p>
+            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">Join HealthSync today to manage your health records, book
+                doctor appointments, and take control of your healthcare journey.</p>
             <a href="{{ route('register') }}"
                 class="px-8 py-4 bg-white text-primary-600 rounded-lg font-bold text-lg hover:bg-primary-50 transition duration-300 inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-1">Create
                 Your Account Now</a>
