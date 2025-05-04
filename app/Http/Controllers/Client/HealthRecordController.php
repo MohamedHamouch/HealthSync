@@ -238,8 +238,8 @@ class HealthRecordController extends Controller
         
         // Delete associated files from storage
         foreach ($healthRecord->files as $file) {
-            if (Storage::disk('public')->exists($file->file_path)) {
-                Storage::disk('public')->delete($file->file_path);
+            if (Storage::disk('public')->exists($file->path)) {
+                Storage::disk('public')->delete($file->path);
             }
         }
         

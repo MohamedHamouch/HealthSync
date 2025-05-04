@@ -15,6 +15,7 @@
                 <h3 class="font-bold text-lg mb-4">Quick Links</h3>
                 <ul class="space-y-2">
                     <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                    <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
                     <li><a href="{{ route('home') }}#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
                     <li><a href="{{ route('home') }}#doctors" class="text-gray-400 hover:text-white transition duration-300">Our Doctors</a></li>
                     <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
@@ -33,6 +34,7 @@
             <div>
                 <h3 class="font-bold text-lg mb-4">About</h3>
                 <ul class="space-y-2">
+                    <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Cookie Policy</a></li>

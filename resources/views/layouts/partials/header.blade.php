@@ -14,6 +14,7 @@
             <div class="hidden md:flex space-x-6">
                 @guest
                     <a href="{{ route('home') }}" class="hover:text-teal-200 transition duration-300 font-medium">Home</a>
+                    <a href="{{ route('about') }}" class="hover:text-teal-200 transition duration-300 font-medium">About Us</a>
                     <a href="{{ route('home') }}#services"
                         class="hover:text-teal-200 transition duration-300 font-medium">Services</a>
                     <a href="{{ route('home') }}#doctors"
@@ -101,6 +102,8 @@
                 @guest
                     <a href="{{ route('home') }}"
                         class="block px-3 py-2 rounded-md text-white font-medium hover:bg-teal-600">Home</a>
+                    <a href="{{ route('about') }}"
+                        class="block px-3 py-2 rounded-md text-white font-medium hover:bg-teal-600">About Us</a>
                     <a href="{{ route('home') }}#services"
                         class="block px-3 py-2 rounded-md text-white font-medium hover:bg-teal-600">Services</a>
                     <a href="{{ route('home') }}#doctors"

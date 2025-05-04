@@ -62,7 +62,7 @@
                     Sign In
                 </button>
             </form>
-            
+{{--             
             <div class="mt-5 pt-4 border-t border-gray-200">
                 <div class="text-center mb-3">
                     <p class="text-xs text-gray-600">Or sign in with</p>
@@ -86,7 +86,7 @@
                         <span class="text-sm">Apple</span>
                     </button>
                 </div>
-            </div>
+            </div> --}}
             
             <!-- Account creation link inside the form -->
             <div class="mt-4 text-center">

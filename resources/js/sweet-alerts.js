@@ -36,7 +36,7 @@ function replaceConfirmations() {
             const submitButton = form.querySelector('button[type="submit"]');
             
             if (submitButton) {
-                // Change it to button type
+                // Change it to button type to prevent automatic form submission
                 submitButton.setAttribute('type', 'button');
                 
                 // Add click event
@@ -54,7 +54,8 @@ function replaceConfirmations() {
                         cancelButtonText: 'No'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            document.getElementById(formId).submit();
+                            // Use form.submit() instead of relying on the ID which might not be present
+                            form.submit();
                         }
                     });
                 });
@@ -96,6 +97,9 @@ function replaceConfirmations() {
                         // If it's a simple link, continue with navigation
                         if (element.tagName === 'A') {
                             window.location.href = element.getAttribute('href');
+                        } else if (element.closest('form')) {
+                            // If the element is inside a form, submit the form
+                            element.closest('form').submit();
                         }
                     }
                 });

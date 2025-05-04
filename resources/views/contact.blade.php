@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <p class="text-md font-medium text-gray-900">Phone Support</p>
-                                    <p class="mt-2 text-base text-gray-600">+1 (555) 123-4567</p>
+                                    <p class="mt-2 text-base text-gray-600">+212 667-313-172</p>
                                     <p class="mt-1 text-sm text-gray-500">Monday to Friday, 9AM to 6PM</p>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                                 <div class="ml-4">
                                     <p class="text-md font-medium text-gray-900">Office Address</p>
                                     <p class="mt-2 text-base text-gray-600">123 Health Avenue</p>
-                                    <p class="mt-1 text-sm text-gray-500">New York, NY 10001</p>
+                                    <p class="mt-1 text-sm text-gray-500">Safi, Morocco 46000</p>
                                 </div>
                             </div>
                         </div>

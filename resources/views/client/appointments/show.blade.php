@@ -129,11 +129,10 @@
                                 </div>
                                 <p class="text-gray-700">{{ $appointment->review->comment }}</p>
                             </div>
-                            <form action="{{ route('client.reviews.delete', $appointment->review) }}" method="POST" class="inline-block">
+                            <form action="{{ route('client.reviews.delete', $appointment->review) }}" method="POST" class="inline-block" id="delete-review-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" onclick="return confirm('Are you sure you want to delete this review?')" 
-                                        class="text-red-600 hover:text-red-800">
+                                <button type="submit" class="text-red-600 hover:text-red-800">
                                     Delete Review
                                 </button>
                             </form>
@@ -182,4 +181,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteReviewForm = document.getElementById('delete-review-form');
+        if (deleteReviewForm) {
+            const deleteButton = deleteReviewForm.querySelector('button[type="submit"]');
+            if (deleteButton) {
+                deleteButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    Swal.fire({
+                        title: 'Delete Review',
+                        text: 'Are you sure you want to delete this review?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete it',
+                        cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            deleteReviewForm.submit();
+                        }
+                    });
+                });
+            }
+        }
+    });
+</script>
 @endsection 
