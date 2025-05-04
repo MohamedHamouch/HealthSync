@@ -13,6 +13,15 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'role' => \App\Http\Middleware\EnsureUserRole::class,
+            'check.suspension' => \App\Http\Middleware\CheckUserSuspension::class,
+            'ensure.suspended' => \App\Http\Middleware\EnsureUserIsSuspended::class,
+            'check.activation' => \App\Http\Middleware\CheckUserActivation::class,
+            'ensure.inactive.doctor' => \App\Http\Middleware\EnsureUserIsInactiveDoctor::class,
+        ]);
+        
+        $middleware->web(append: [
+            \App\Http\Middleware\CheckUserSuspension::class,
+            \App\Http\Middleware\CheckUserActivation::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
