@@ -83,34 +83,51 @@
                 <!-- Rating Distribution -->
                 <div class="mb-8">
                     <h3 class="text-lg font-medium text-gray-800 mb-4">Rating Distribution</h3>
-                    <div class="space-y-3">
-                        @for ($rating = 5; $rating >= 1; $rating--)
-                            <div class="flex items-center">
-                                <div class="w-10 text-right mr-3">
-                                    <span class="font-medium text-gray-700">{{ $rating }} star</span>
-                                </div>
-                                <div class="flex-1 h-6 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="bg-white overflow-hidden rounded-lg border border-gray-200">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Count</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @for ($rating = 5; $rating >= 1; $rating--)
                                     @php
-                                        $percentage = $totalReviews > 0 ? ($ratingCounts[$rating] ?? 0) / $totalReviews * 100 : 0;
+                                        $count = $ratingCounts[$rating] ?? 0;
+                                        $percentage = $totalReviews > 0 ? ($count / $totalReviews * 100) : 0;
                                     @endphp
-                                    <div 
-                                        class="h-full 
-                                        @if($rating == 5) bg-green-500 
-                                        @elseif($rating == 4) bg-green-400 
-                                        @elseif($rating == 3) bg-yellow-400 
-                                        @elseif($rating == 2) bg-orange-400 
-                                        @else bg-red-400 @endif" 
-                                        style="width: {{ $percentage }}%">
-                                    </div>
-                                </div>
-                                <div class="w-16 text-right ml-3">
-                                    <span class="text-gray-600">{{ $ratingCounts[$rating] ?? 0 }}</span>
-                                </div>
-                                <div class="w-16 text-right ml-3">
-                                    <span class="text-gray-500 text-sm">{{ number_format($percentage, 1) }}%</span>
-                                </div>
-                            </div>
-                        @endfor
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <span class="font-medium text-gray-700 mr-2">{{ $rating }}</span>
+                                                <div class="flex text-yellow-400">
+                                                    @for ($i = 1; $i <= $rating; $i++)
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-gray-700">
+                                            {{ $count }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-3 py-1 inline-flex text-sm leading-5 font-medium rounded-full
+                                                @if($rating == 5) bg-green-100 text-green-800 
+                                                @elseif($rating == 4) bg-green-50 text-green-600 
+                                                @elseif($rating == 3) bg-yellow-100 text-yellow-800 
+                                                @elseif($rating == 2) bg-orange-100 text-orange-800 
+                                                @else bg-red-100 text-red-800 @endif">
+                                                {{ number_format($percentage, 1) }}%
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endfor
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
