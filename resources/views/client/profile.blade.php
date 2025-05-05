@@ -366,7 +366,6 @@
                             <option value="">Select Gender</option>
                             <option value="male" {{ isset($profileData['profile']['gender']) && $profileData['profile']['gender']->value == 'male' ? 'selected' : '' }}>Male</option>
                             <option value="female" {{ isset($profileData['profile']['gender']) && $profileData['profile']['gender']->value == 'female' ? 'selected' : '' }}>Female</option>
-                            <option value="other" {{ isset($profileData['profile']['gender']) && $profileData['profile']['gender']->value == 'other' ? 'selected' : '' }}>Other</option>
                         </select>
                     </div>
                 </div>
