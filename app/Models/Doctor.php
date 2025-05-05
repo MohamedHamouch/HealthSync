@@ -47,16 +47,6 @@ class Doctor extends User
     }
 
     /**
-     * Get the clients that have granted this doctor access to their data.
-     */
-    public function authorizedClients()
-    {
-        return $this->belongsToMany(Client::class, 'client_doctor', 'doctor_id', 'client_id')
-            ->withPivot(['access_granted_at', 'access_expires_at', 'is_active'])
-            ->withTimestamps();
-    }
-
-    /**
      * Get the appointments for the doctor.
      */
     public function appointments()
