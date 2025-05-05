@@ -44,7 +44,7 @@ class BookingController extends Controller
      */
     public function doctor($id)
     {
-        // Load doctor with profile and schedules but WITHOUT reviews.client relation
+        // Load doctor with profile and schedules
         $doctor = Doctor::with(['profile', 'schedules'])
             ->findOrFail($id);
             

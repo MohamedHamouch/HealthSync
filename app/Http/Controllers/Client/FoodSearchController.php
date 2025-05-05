@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Exception;
 
 class FoodSearchController extends Controller
 {
@@ -69,7 +70,7 @@ class FoodSearchController extends Controller
                     'message' => 'Failed to retrieve data from Food Data Central API: ' . $response->status()
                 ], 500);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'An error occurred: ' . $e->getMessage()

@@ -165,7 +165,7 @@ class ProfileController extends Controller
         // Validate data
         $validated = $request->validate([
             'date_of_birth' => 'nullable|date',
-            'gender' => 'nullable|string|in:male,female,other',
+            'gender' => 'nullable|string|in:male,female',
             'blood_type' => 'nullable|string|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
             'height' => 'nullable|numeric|min:0',
             'weight' => 'nullable|numeric|min:0',
